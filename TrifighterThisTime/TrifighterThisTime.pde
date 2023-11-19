@@ -8,12 +8,11 @@ boolean ButtonHighlighted; //button color when mouse not over and when mouse is 
 boolean printTitleOnce; //makes sure title is printed once or else it looks odd
 boolean createStarsOnce;
 boolean startbuttonpress;
-
+Ship ship;
 
 //star variables
 
 
-float starSize = random(2, 5);
 
 
 
@@ -31,6 +30,7 @@ void setup() {
   rectMode(CENTER);
   fill(0); // black sky filling
   rect(width/2, height/2, width, height); // actual black sky rectangle
+  ship = new Ship(width/2, height/2);
 }
 
 
@@ -45,6 +45,9 @@ void draw() {
     CreditButton();
     Cursor();
   } else if (GameStart == true) {
+    
+    ship.MakeShip();
+    
   }
 
 
@@ -155,7 +158,8 @@ void keyPressed() {
     if (startbuttonpress == true) {
       if (key == ' ') {
         print("Start Gameplay");
-        //startbuttonpress = true;
+        GameStart = true;
+        ship.ShipPosition.x = width/2;
       }
     }
     if (startbuttonpress == false) {
@@ -164,8 +168,6 @@ void keyPressed() {
         //startbuttonpress = true;
       }
     }
-    
-    
   }
 
 
