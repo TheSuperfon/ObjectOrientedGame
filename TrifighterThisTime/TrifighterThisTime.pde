@@ -8,6 +8,7 @@ boolean ButtonHighlighted; //button color when mouse not over and when mouse is 
 boolean printTitleOnce; //makes sure title is printed once or else it looks odd
 boolean createStarsOnce;
 boolean startbuttonpress;
+boolean CreditsActive;
 Ship ship;
 
 //star variables
@@ -26,6 +27,7 @@ void setup() {
   printTitleOnce = true;
   createStarsOnce = true;
   startbuttonpress = true;
+  CreditsActive = false;
   GameStart = false;
   rectMode(CENTER);
   fill(0); // black sky filling
@@ -39,15 +41,15 @@ void setup() {
 void draw() {
   fill(0); // black sky filling
   rect(width/2, height/2, width, height); // actual black sky rectangle
-  if (GameStart == false) {
+  if ((GameStart == false) && (CreditsActive == false)) {
     Title();
     StartButton();
     CreditButton();
     Cursor();
   } else if (GameStart == true) {
-    
+
     ship.MakeShip();
-    
+  } else if ((GameStart == false) && (CreditsActive == true)) {
   }
 
 
@@ -74,8 +76,8 @@ void Title() {
   //strokeWeight(10); // thicker outline
   //stroke(255,252,155);
   text(("TriFighter"), 190, 190); //Title text with the name of the game
-  textSize(20);
-  text(("Left = up and Right = down on menu"), 250, 230); //Menu Instructions
+  //textSize(20);
+  //text(("Left = up and Right = down on menu"), 250, 230); //Menu Instructions
   printTitleOnce = false;
 }
 
@@ -107,6 +109,12 @@ void CreditButton() {
   fill(255, 255, 240);
   text(("Credits"), 355, 485); //credits because i wanted an excuse for another button
 }
+void ActualCredits() {
+  rect(400, 475, 200, 50); //
+  textSize(30);
+  fill(255, 255, 240);
+  text(("Credits"), 355, 485); //credits because i wanted an excuse for another button
+}
 
 
 
@@ -133,7 +141,8 @@ void stars() {
   //    }
   //    createStarsOnce = false;
   //  }
-  // the randomness of x,y,size and number of stars makes them look a bit more natural and not like a forced pattern
+
+  // the randomness of x,y,size was done because i thought it was neat
   for (float i = random(40, 41); i < random(799, 800); i = i+ random(99, 100)) {
     for (float j = random(40, 41); j < random(799, 800); j = j+random(99, 100)) {
       noStroke();
@@ -160,14 +169,23 @@ void keyPressed() {
         print("Start Gameplay");
         GameStart = true;
         ship.ShipPosition.x = width/2;
+        ship.ShipPosition.y = height/2;
       }
     }
     if (startbuttonpress == false) {
       if (key == ' ') {
         print("got to credits");
-        //startbuttonpress = true;
+        CreditsActive = true;
       }
     }
+    if (CreditsActive == true) {
+      if (key == ' ') {
+        print("go back to start screen");
+        CreditsActive = false;
+        delay(500);
+      }
+    }
+    
   }
 
 
