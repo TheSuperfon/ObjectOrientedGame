@@ -15,7 +15,7 @@ Ship ship;
 
 
 
-
+//do cases for credits and add timer
 
 
 
@@ -49,6 +49,7 @@ void draw() {
   } else if (GameStart == true) {
 
     ship.MakeShip();
+    ship.StayOnMap();
   } else if ((GameStart == false) && (CreditsActive == true)) {
   }
 
@@ -180,7 +181,7 @@ void keyPressed() {
     }
     if (CreditsActive == true) {
       if (key == ' ') {
-        print("go back to start screen");
+        println("go back to start screen");
         CreditsActive = false;
         delay(500);
       }
@@ -191,11 +192,16 @@ void keyPressed() {
 
   if (GameStart == true) {
     if (key == 'w') {
+      //ship.rotate(PI);
+      ship.ShipPosition.y -= 10;
       //player.goUp=true;
     } else if (key == 'a') {
       //player.RotateLeft=true;
+      ship.rotate -= PI/20;
+      //ship.rotate += 1;
     } else if (key == 's') {
       //player.goDown=true;
+      //ship.rotate -= 1;
     } else if (key == 'd') {
       //player.RotateRight=true;
     } else if (key == 'e') {
