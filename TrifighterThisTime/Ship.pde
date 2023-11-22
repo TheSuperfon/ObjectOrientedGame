@@ -1,14 +1,15 @@
 class Ship {
 
   //ship position variables
-  //float playerX;
-  //float playerY;
+  float playerX;
+  float playerY;
   PVector ShipPosition = new PVector();
+  PVector ShipVelocity = new PVector(); //velocity = direction + speed
   float rotate;
   float speed;
 
 
-  Ship(float playerX, float playerY) {
+  Ship() {
 
     ShipPosition.x = playerX;
     ShipPosition.y = playerY;
@@ -18,23 +19,27 @@ class Ship {
 
 
   void MakeShip() {
-    noStroke(); //no outline
-    fill(255, 220, 0);
+    //noStroke(); //no outline
+    //fill(255, 220, 0);
+    imageMode(CENTER);
     pushMatrix();
-    translate(ShipPosition.x, ShipPosition.y); 
+    translate(ShipPosition.x, ShipPosition.y);
     rotate(rotate);
-    
-    triangle(0, (- 60), (- 20), (- 30), (+ 20), (- 30));
-    rect(0, 0, 40, 60);
-    rect((0)+25, (0)+30, 15, 60);
-    rect((0)-25, (0)+30, 15, 60);
+
+    image(ShipSprite, 0, 0);
+    ShipSprite.resize(80,76);
+
+    //triangle(0, (- 60), (- 20), (- 30), (+ 20), (- 30));
+    //rect(0, 0, 40, 60);
+    //rect((0)+25, (0)+30, 15, 60);
+    //rect((0)-25, (0)+30, 15, 60);
     popMatrix();
   }
-  
-  
-  
-  
-   //this void keeps the player on the map
+
+
+
+
+  //this void keeps the player on the map
   void StayOnMap() {
     if (ShipPosition.x > width) {
       ShipPosition.x = 0;
@@ -48,5 +53,4 @@ class Ship {
       ShipPosition.y = height;
     }
   }
-  
 }

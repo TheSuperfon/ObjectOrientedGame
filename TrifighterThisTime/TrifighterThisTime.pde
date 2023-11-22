@@ -9,6 +9,9 @@ boolean printTitleOnce; //makes sure title is printed once or else it looks odd
 boolean createStarsOnce;
 boolean startbuttonpress;
 boolean CreditsActive;
+
+PImage ShipSprite;
+
 Ship ship;
 
 //star variables
@@ -22,6 +25,7 @@ Ship ship;
 void setup() {
   size(800, 800);
   background(0);
+  ShipSprite = loadImage("ShipSprite.png");
   //strokeWeight(4); //default outline thickness
   //stars();
   printTitleOnce = true;
@@ -32,7 +36,7 @@ void setup() {
   rectMode(CENTER);
   fill(0); // black sky filling
   rect(width/2, height/2, width, height); // actual black sky rectangle
-  ship = new Ship(width/2, height/2);
+  ship = new Ship();
 }
 
 
@@ -41,6 +45,7 @@ void setup() {
 void draw() {
   fill(0); // black sky filling
   rect(width/2, height/2, width, height); // actual black sky rectangle
+  stars();
   if ((GameStart == false) && (CreditsActive == false)) {
     Title();
     StartButton();
@@ -54,7 +59,7 @@ void draw() {
   }
 
 
-  stars();
+  
 }
 
 
