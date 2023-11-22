@@ -14,9 +14,10 @@ PImage ShipSprite;
 PImage AsteroidSprite;
 
 Ship ship;
-
-//star variables
-
+//Asteroids asteroid;
+//Asteroids variables
+//ArrayList<Bullets> bulletlist = new ArrayList<Bullets>();
+//arraylist for bullets and arrays for asteroids
 
 
 //do cases for credits and add timer
@@ -39,6 +40,7 @@ void setup() {
   fill(0); // black sky filling
   rect(width/2, height/2, width, height); // actual black sky rectangle
   ship = new Ship();
+  //asteroid = new Asteroids();
 }
 
 
@@ -57,6 +59,7 @@ void draw() {
 
     ship.MakeShip();
     ship.ShipStayOnMap();
+    //asteroid.CreateAsteroids();
   } else if ((GameStart == false) && (CreditsActive == true)) {
   }
 
