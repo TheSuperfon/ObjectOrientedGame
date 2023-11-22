@@ -11,6 +11,7 @@ boolean startbuttonpress;
 boolean CreditsActive;
 
 PImage ShipSprite;
+PImage AsteroidSprite;
 
 Ship ship;
 
@@ -26,6 +27,7 @@ void setup() {
   size(800, 800);
   background(0);
   ShipSprite = loadImage("ShipSprite.png");
+  AsteroidSprite = loadImage("AsteroidSprite.png");
   //strokeWeight(4); //default outline thickness
   //stars();
   printTitleOnce = true;
@@ -54,7 +56,7 @@ void draw() {
   } else if (GameStart == true) {
 
     ship.MakeShip();
-    ship.StayOnMap();
+    ship.ShipStayOnMap();
   } else if ((GameStart == false) && (CreditsActive == true)) {
   }
 

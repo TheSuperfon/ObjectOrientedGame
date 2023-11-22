@@ -40,7 +40,7 @@ class Ship {
 
 
   //this void keeps the player on the map
-  void StayOnMap() {
+  void ShipStayOnMap() {
     if (ShipPosition.x > width) {
       ShipPosition.x = 0;
     } else if (ShipPosition.x < 0) {
