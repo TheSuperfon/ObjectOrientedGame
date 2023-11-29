@@ -21,6 +21,11 @@ class Asteroids {
     //AsteroidSprite.resize(80,76);
   }
   
+  void update() {
+    AsteroidPosition.add(AsteroidsDirection);//constantly moves asteroid based on random direction
+  }
+  
+  
   
   void AsteroidsStayOnMap() {
     if (AsteroidPosition.x > width) {

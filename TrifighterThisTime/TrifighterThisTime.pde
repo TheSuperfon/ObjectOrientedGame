@@ -10,15 +10,28 @@ boolean createStarsOnce;
 boolean startbuttonpress;
 boolean CreditsActive;
 
+//sprite images
 PImage ShipSprite;
 PImage AsteroidSprite;
 
+//direction variables
+boolean GoForward;
+boolean LeftRotation;
+boolean RightRotation;
+boolean GoBackwards;
+
+
+
+//object things
 Ship ship;
+
+
+
 //Asteroids asteroid;
 //Asteroids variables
 //ArrayList<Bullets> bulletlist = new ArrayList<Bullets>();
 //arraylist for bullets and arrays for asteroids
-
+Asteroids [] asteroidslist = new Asteroids[10];// array that holds 10 asteroids that appear in the game
 
 //do cases for credits and add timer
 
@@ -58,6 +71,7 @@ void draw() {
   } else if (GameStart == true) {
 
     ship.MakeShip();
+    ship.MoveShip();
     ship.ShipStayOnMap();
     //asteroid.CreateAsteroids();
   } else if ((GameStart == false) && (CreditsActive == true)) {
@@ -84,11 +98,7 @@ void Title() {
   //print("Test");
   fill(255, 255, 240);
   textSize(100);
-  //strokeWeight(10); // thicker outline
-  //stroke(255,252,155);
   text(("TriFighter"), 190, 190); //Title text with the name of the game
-  //textSize(20);
-  //text(("Left = up and Right = down on menu"), 250, 230); //Menu Instructions
   printTitleOnce = false;
 }
 
@@ -179,8 +189,16 @@ void keyPressed() {
       if (key == ' ') {
         print("Start Gameplay");
         GameStart = true;
+        //sets starting position
         ship.ShipPosition.x = width/2;
         ship.ShipPosition.y = height/2;
+        //sets starting speed
+        ship.ShipVelocity.x = 0;
+        ship.ShipVelocity.y = 0;
+        //sets starting direction
+        ship.ShipDirection.x = 0;
+        ship.ShipDirection.y = -0.05;
+        
       }
     }
     if (startbuttonpress == false) {
@@ -203,17 +221,22 @@ void keyPressed() {
   if (GameStart == true) {
     if (key == 'w') {
       //ship.rotate(PI);
-      ship.ShipPosition.y -= 10;
+      ///////ship.ShipPosition.y -= 10;
       //player.goUp=true;
+      GoForward = true;
+      //print("aaaahhh");
     } else if (key == 'a') {
       //player.RotateLeft=true;
-      ship.rotate -= PI/20;
+      ///////ship.rotate -= PI/20;
       //ship.rotate += 1;
+      LeftRotation = true;
     } else if (key == 's') {
       //player.goDown=true;
       //ship.rotate -= 1;
+      GoBackwards = true;
     } else if (key == 'd') {
       //player.RotateRight=true;
+      RightRotation = true;
     } else if (key == 'e') {
       //player.test=true; //something i had to test certain functions i no longer need it but i grew attached and didn't want to delete it so i repurposed it. press it see what happens
     }
@@ -223,11 +246,16 @@ void keyPressed() {
 void keyReleased() {
   if (key == 'w') {
     //player.goUp=false;
+    GoForward = false;
   } else if (key == 'a') {
     //player.RotateLeft=false;
+    LeftRotation = false;
   } else if (key == 's') {
     //player.goDown=false;
+    GoBackwards = false;
   } else if (key == 'd') {
+    RightRotation = false;
+    
     //player.RotateRight=false;
   } else if (key == 'e') {
     //player.test=false;

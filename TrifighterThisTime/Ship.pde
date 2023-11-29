@@ -5,14 +5,15 @@ class Ship {
   float playerY;
   PVector ShipPosition = new PVector();
   PVector ShipVelocity = new PVector(); //velocity = direction + speed
+  PVector ShipDirection = new PVector();
   float rotate;
   float speed;
 
 
   Ship() {
 
-    ShipPosition.x = playerX;
-    ShipPosition.y = playerY;
+    //ShipPosition.x = playerX;
+    //ShipPosition.y = playerY;
     speed = 0;
     rotate = 0;
   }
@@ -24,10 +25,10 @@ class Ship {
     imageMode(CENTER);
     pushMatrix();
     translate(ShipPosition.x, ShipPosition.y);
-    rotate(rotate);
-
+    //rotate(rotate);
+    rotate(ShipDirection.heading()); //actually rotates the ship by providing an angle based on the shipdirection pvector
     image(ShipSprite, 0, 0);
-    ShipSprite.resize(80,76);
+    ShipSprite.resize(80, 76);
 
     //triangle(0, (- 60), (- 20), (- 30), (+ 20), (- 30));
     //rect(0, 0, 40, 60);
@@ -36,7 +37,26 @@ class Ship {
     popMatrix();
   }
 
+  void MoveShip() {
 
+    ShipPosition.add(ShipVelocity);
+
+    if (LeftRotation == true) {
+      ShipDirection.rotate(radians(-5));
+      //print("rotate");
+    }
+    if (RightRotation == true) {
+      ShipDirection.rotate(radians(5));
+    }
+    if (GoForward == true){
+      ShipVelocity.add(ShipDirection);
+      ShipVelocity.add(ShipDirection);
+    }
+    if (GoBackwards == true){
+      ShipVelocity.sub(ShipDirection);
+      ShipVelocity.sub(ShipDirection);
+    }
+  }
 
 
   //this void keeps the player on the map
