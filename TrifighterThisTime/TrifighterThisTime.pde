@@ -13,6 +13,7 @@ boolean CreditsActive;
 //sprite images
 PImage ShipSprite;
 PImage AsteroidSprite;
+PImage BulletSprite;
 
 //direction variables
 boolean GoForward;
@@ -42,6 +43,7 @@ void setup() {
   background(0);
   ShipSprite = loadImage("ShipSprite.png");
   AsteroidSprite = loadImage("AsteroidSprite.png");
+  BulletSprite = loadImage("BulletSprite.png");
   //strokeWeight(4); //default outline thickness
   //stars();
   printTitleOnce = true;
@@ -109,7 +111,7 @@ void SpawnInBullets()
   //for (Bullets part : j) {
     //Bullets.display();
   //}
-  if ((bulletlist.size()) >= 3) {
+  if ((bulletlist.size()) > 3) {
     println("too many");
     
   }
@@ -270,7 +272,7 @@ void keyPressed() {
     } else if (key == 'd') {
       //player.RotateRight=true;
       RightRotation = true;
-    } else if (key == 'e') {
+    } else if (key == ' ') {
       SpawnInBullets();
     }
   }

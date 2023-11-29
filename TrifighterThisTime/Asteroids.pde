@@ -8,13 +8,13 @@ class Asteroids {
     AsteroidPosition = new PVector(random(width),random(height)); // randomizes the starting location of the asteroid
     //AsteroidPosition = new PVector(400,400); // randomizes the starting location of the asteroid
     AsteroidsDirection = new PVector(random(-2,2),random(-2,2)); //randomizes the direction of the asteroid
-    RandomAsteroidSize = random(1,1.5); //randomizes the size of the asteroid
+    RandomAsteroidSize = random(66,96); //randomizes the size of the asteroid
   }
   
   void CreateAsteroids() {
     imageMode(CENTER);
-    image(AsteroidSprite, AsteroidPosition.x, AsteroidPosition.y);
-    AsteroidSprite.resize(66,66);
+    image(AsteroidSprite, AsteroidPosition.x, AsteroidPosition.y, RandomAsteroidSize,RandomAsteroidSize);
+    //AsteroidSprite.resize(66,66);
     fill(255);
     //rect(400,400,215,215);
     //AsteroidSprite.resize(80,76);

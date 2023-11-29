@@ -27,8 +27,8 @@ class Ship {
     translate(ShipPosition.x, ShipPosition.y);
     //rotate(rotate);
     rotate(ShipDirection.heading()); //actually rotates the ship by providing an angle based on the shipdirection pvector
-    image(ShipSprite, 0, 0);
-    ShipSprite.resize(80, 76);
+    image(ShipSprite, 0, 0,80,76);
+    //ShipSprite.resize(80, 76);
 
     //triangle(0, (- 60), (- 20), (- 30), (+ 20), (- 30));
     //rect(0, 0, 40, 60);
@@ -56,6 +56,7 @@ class Ship {
       ShipVelocity.sub(ShipDirection);
       ShipVelocity.sub(ShipDirection);
     }
+    ShipVelocity.limit(5);
   }
 
 
