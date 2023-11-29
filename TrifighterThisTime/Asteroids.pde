@@ -8,6 +8,7 @@ class Asteroids {
     AsteroidPosition = new PVector(random(width),random(height)); // randomizes the starting location of the asteroid
     //AsteroidPosition = new PVector(400,400); // randomizes the starting location of the asteroid
     AsteroidsDirection = new PVector(random(-2,2),random(-2,2)); //randomizes the direction of the asteroid
+    //AsteroidsDirection = new PVector(100,100); //infitie speed
     RandomAsteroidSize = random(66,96); //randomizes the size of the asteroid
   }
   

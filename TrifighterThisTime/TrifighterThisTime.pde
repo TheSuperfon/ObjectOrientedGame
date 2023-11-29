@@ -108,8 +108,14 @@ void SpawnInBullets()
   bulletlist.add(new Bullets());
   //Bullets part = bulletlist.get(0);
   println(bulletlist.size());
+  for (int i = 0; i < bulletlist.size(); i++)
+  {
+    bulletlist.get(i).MakeBullet();
+    
+  }
   //for (Bullets part : j) {
     //Bullets.display();
+    //bulletlist.MakeBullet;
   //}
   if ((bulletlist.size()) > 3) {
     println("too many");
