@@ -1,18 +1,17 @@
 class Asteroids {
-  float RandomAsteroidSize;//asteroid size
+  float RandomAsteroidSize;//randomized asteroid size multiplyer
   
   PVector AsteroidPosition; //asteroid starting position
-  PVector AsteroidsDirection; //direction asteroid goes in
+  PVector AsteroidsDirection; //direction for asteroid 
   
-  Asteroids() {//determines how the asteroids are made and what direction they will go in and these are randomized each time the program starts
+  Asteroids() {
     AsteroidPosition = new PVector(random(width),random(height)); // randomizes the starting location of the asteroid
     //AsteroidPosition = new PVector(400,400); // randomizes the starting location of the asteroid
     AsteroidsDirection = new PVector(random(-2,2),random(-2,2)); //randomizes the direction of the asteroid
-    RandomAsteroidSize = random(30,80); //randomizes the size of the asteroid
+    RandomAsteroidSize = random(1,1.5); //randomizes the size of the asteroid
   }
   
   void CreateAsteroids() {
-    //circle(AsteroidLocation.x,AsteroidLocation.y,AsteroidSize); //tells the program how to spawn the asteroid
     imageMode(CENTER);
     image(AsteroidSprite, AsteroidPosition.x, AsteroidPosition.y);
     AsteroidSprite.resize(66,66);
@@ -21,7 +20,7 @@ class Asteroids {
     //AsteroidSprite.resize(80,76);
   }
   
-  void update() {
+  void MoveAsteroids() {
     AsteroidPosition.add(AsteroidsDirection);//constantly moves asteroid based on random direction
   }
   
