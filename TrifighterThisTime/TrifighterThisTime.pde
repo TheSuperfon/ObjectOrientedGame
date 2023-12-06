@@ -111,16 +111,14 @@ void SpawnInBullets()
   for (int i = 0; i < bulletlist.size(); i++)
   {
     bulletlist.get(i).MakeBullet();
-    
-  }
-  //for (Bullets part : j) {
-    //Bullets.display();
-    //bulletlist.MakeBullet;
-  //}
-  if ((bulletlist.size()) > 3) {
+    bulletlist.get(i).MoveBullet();
+    bulletlist.get(i).BulletsStayOnMap();
+    if ((bulletlist.size()) > 3) {
     println("too many");
-    
+    bulletlist.remove((bulletlist.size()-1));
   }
+  }
+  
 }
 
 
