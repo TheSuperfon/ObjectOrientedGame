@@ -76,6 +76,18 @@ void draw() {
     ship.MoveShip();
     ship.ShipStayOnMap();
     SpawnInAsteroids();
+    //println(bulletlist.size());
+    for (int i = 0; i < bulletlist.size(); i++)
+    {
+      bulletlist.get(i).MakeBullet();
+      bulletlist.get(i).MoveBullet();
+      bulletlist.get(i).BulletsStayOnMap();
+      if ((bulletlist.size()) > 3) {
+        //println("too many");
+        bulletlist.remove((bulletlist.size()-1));
+      }
+    }
+
 
     //asteroid.CreateAsteroids();
   } else if ((GameStart == false) && (CreditsActive == true)) {
@@ -106,19 +118,6 @@ void SpawnInAsteroids()
 void SpawnInBullets()
 {
   bulletlist.add(new Bullets());
-  //Bullets part = bulletlist.get(0);
-  println(bulletlist.size());
-  for (int i = 0; i < bulletlist.size(); i++)
-  {
-    bulletlist.get(i).MakeBullet();
-    bulletlist.get(i).MoveBullet();
-    bulletlist.get(i).BulletsStayOnMap();
-    if ((bulletlist.size()) > 3) {
-    println("too many");
-    bulletlist.remove((bulletlist.size()-1));
-  }
-  }
-  
 }
 
 
@@ -192,18 +191,6 @@ void Cursor() {
 }
 
 void stars() {
-  //  while (createStarsOnce == true) {
-  //    // the randomness of x,y,size and number of stars makes them look a bit more natural and not like a forced pattern
-  //    for (float i = random(20, 40); i < random(750, 800); i = i+ random(80, 100)) {
-  //      for (float j = random(20, 40); j < random(800, 900); j = j+random(80, 100)) {
-  //        noStroke();
-  //        fill(255, 252, 155); // star (debatable) color
-  //        circle(i, j, random(2, 5));
-  //      }
-  //    }
-  //    createStarsOnce = false;
-  //  }
-
   // the randomness of x,y,size was done because i thought it was neat
   for (float i = random(40, 41); i < random(799, 800); i = i+ random(99, 100)) {
     for (float j = random(40, 41); j < random(799, 800); j = j+random(99, 100)) {
@@ -214,16 +201,16 @@ void stars() {
   }
 }
 
-// When WSAD is pressed ship moves according to the direction in variable
+// ship rotates if A or D and moves forwards/backwards for W and S
 void keyPressed() {
 
 
 
   if (GameStart == false) {
     if (key == 'w') {
-      startbuttonpress = true;
+      startbuttonpress = true; //highlights start button
     } else if (key == 's') {
-      startbuttonpress = false;
+      startbuttonpress = false; //unhighlights start button and highlights credits instead
     }
 
     if (startbuttonpress == true) {
@@ -259,22 +246,12 @@ void keyPressed() {
 
   if (GameStart == true) {
     if (key == 'w') {
-      //ship.rotate(PI);
-      ///////ship.ShipPosition.y -= 10;
-      //player.goUp=true;
       GoForward = true;
-      //print("aaaahhh");
     } else if (key == 'a') {
-      //player.RotateLeft=true;
-      ///////ship.rotate -= PI/20;
-      //ship.rotate += 1;
       LeftRotation = true;
     } else if (key == 's') {
-      //player.goDown=true;
-      //ship.rotate -= 1;
       GoBackwards = true;
     } else if (key == 'd') {
-      //player.RotateRight=true;
       RightRotation = true;
     } else if (key == ' ') {
       SpawnInBullets();
@@ -284,19 +261,13 @@ void keyPressed() {
 // void keyreleased code makes sure that the ship stops going in that direction when that key is released
 void keyReleased() {
   if (key == 'w') {
-    //player.goUp=false;
     GoForward = false;
   } else if (key == 'a') {
-    //player.RotateLeft=false;
     LeftRotation = false;
   } else if (key == 's') {
-    //player.goDown=false;
     GoBackwards = false;
   } else if (key == 'd') {
     RightRotation = false;
-
-    //player.RotateRight=false;
   } else if (key == 'e') {
-    //player.test=false;
   }
 }

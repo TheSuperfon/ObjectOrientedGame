@@ -20,20 +20,11 @@ class Ship {
 
 
   void MakeShip() {
-    //noStroke(); //no outline
-    //fill(255, 220, 0);
     imageMode(CENTER);
     pushMatrix();
     translate(ShipPosition.x, ShipPosition.y);
-    //rotate(rotate);
     rotate(ShipDirection.heading()); //actually rotates the ship by providing an angle based on the shipdirection pvector
     image(ShipSprite, 0, 0,80,76);
-    //ShipSprite.resize(80, 76);
-
-    //triangle(0, (- 60), (- 20), (- 30), (+ 20), (- 30));
-    //rect(0, 0, 40, 60);
-    //rect((0)+25, (0)+30, 15, 60);
-    //rect((0)-25, (0)+30, 15, 60);
     popMatrix();
   }
 
