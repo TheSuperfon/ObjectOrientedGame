@@ -57,6 +57,7 @@ void setup() {
   rect(width/2, height/2, width, height); // actual black sky rectangle
   ship = new Ship();
   BuildAsteroids();
+  PlayerTimer = 0;
 }
 
 
@@ -66,6 +67,11 @@ void draw() {
   fill(0); // black sky filling
   rect(width/2, height/2, width, height); // actual black sky rectangle
   stars();
+  textSize(30);
+  fill(255, 255, 240);
+  text(("Score is" ), 30, 85); //instructs on how to start the game
+  text((PlayerTimer), 150, 85);
+
   if ((GameStart == false) && (CreditsActive == false)) {
     Title();
     StartButton();
@@ -98,8 +104,10 @@ void draw() {
       }
       for (int j = 0; j < asteroidslist.length; j++)
       {
-        //if ((dist(asteroidslist[i].AsteroidPosition.x, bulletlist.BulletPosition.x, asteroidslist[i].AsteroidPosition.y, bulletlist.BulletPosition.y) )) {
-        //
+        //float BulletCollisionDetector = asteroidslist[i].AsteroidPosition.dist(bulletlist.BulletVelocity);
+        //if (BulletCollisionDetector < asteroidslist[i].RandomAsteroidSize/2) {
+        //  GameStart = false;
+        //  CreditsActive = false;
         //}
       }
     }
@@ -227,6 +235,7 @@ void keyPressed() {
       if (key == ' ') {
         print("Start Gameplay");
         GameStart = true;
+        PlayerTimer = 0;
         //sets starting position
         ship.ShipPosition.x = width/2;
         ship.ShipPosition.y = height/2;
@@ -264,7 +273,7 @@ void keyPressed() {
     } else if (key == 'd') {
       RightRotation = true;
     } else if (key == ' ') {
-      //SpawnInBullets();
+      SpawnInBullets();
     }
   }
 }
