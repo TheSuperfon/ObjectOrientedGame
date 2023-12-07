@@ -85,7 +85,7 @@ void draw() {
     for (int i = 0; i < asteroidslist.length; i++)
     {
       float ShipCollisionDetector = asteroidslist[i].AsteroidPosition.dist(ship.ShipPosition);
-      if (ShipCollisionDetector < asteroidslist[i].RandomAsteroidSize/2) {
+      if (ShipCollisionDetector < asteroidslist[i].RandomAsteroidSize/1.2) {
         GameStart = false;
         CreditsActive = false;
       }
@@ -98,17 +98,19 @@ void draw() {
       bulletlist.get(i).MakeBullet();
       bulletlist.get(i).MoveBullet();
       bulletlist.get(i).BulletsStayOnMap();
+      
+      //Bulletcollider = bulletlist.get(i);
+      
       if ((bulletlist.size()) > 3) {
         //println("too many");
         bulletlist.remove((bulletlist.size()-1));
       }
       for (int j = 0; j < asteroidslist.length; j++)
       {
-        //float BulletCollisionDetector = asteroidslist[i].AsteroidPosition.dist(bulletlist.BulletVelocity);
-        //if (BulletCollisionDetector < asteroidslist[i].RandomAsteroidSize/2) {
-        //  GameStart = false;
-        //  CreditsActive = false;
-        //}
+        float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
+        if (BulletCollisionDetector < asteroidslist[j].RandomAsteroidSize/2) {
+          print("shot");
+        }
       }
     }
 
