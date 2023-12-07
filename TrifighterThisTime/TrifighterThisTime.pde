@@ -87,6 +87,13 @@ void draw() {
         //println("too many");
         bulletlist.remove((bulletlist.size()-1));
       }
+      for (int j = 0; j < asteroidslist.length; j++)
+      {
+        //if ((dist(asteroidslist[i].AsteroidPosition.x, bulletlist.BulletPosition.x,) )){
+        
+        
+        }
+      }
     }
 
 
@@ -113,6 +120,11 @@ void SpawnInAsteroids()
     asteroidslist[i].MoveAsteroids();
     asteroidslist[i].AsteroidsStayOnMap();
     asteroidslist[i].CreateAsteroids();
+
+    //if ((dist(asteroidslist[i].AsteroidPosition, bulletlist.BulletPosition) )){
+    //
+    //
+    //}
   }
 }
 
