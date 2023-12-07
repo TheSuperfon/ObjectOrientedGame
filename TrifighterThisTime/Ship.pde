@@ -47,7 +47,7 @@ class Ship {
       ShipVelocity.sub(ShipDirection);
       ShipVelocity.sub(ShipDirection);
     }
-    ShipVelocity.limit(5);
+    ShipVelocity.limit(6);
   }
 
 

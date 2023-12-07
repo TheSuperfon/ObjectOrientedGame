@@ -40,6 +40,7 @@ Asteroids [] asteroidslist = new Asteroids[6];// array that holds 6 asteroids th
 
 void setup() {
   size(800, 800);
+  frameRate = 60;
   background(0);
   ShipSprite = loadImage("ShipSprite.png");
   AsteroidSprite = loadImage("AsteroidSprite.png");
@@ -124,17 +125,6 @@ void SpawnInBullets()
 
 
 void Title() {
-  //  while (printTitleOnce == true) {
-  //    //print("Test");
-  //    fill(255, 255, 240);
-  //    textSize(100);
-  //    //strokeWeight(10); // thicker outline
-  //    //stroke(255,252,155);
-  //    text(("TriFighter"), 190, 190); //Title text with the name of the game
-  //    textSize(20);
-  //    text(("Left = up and Right = down on menu"), 250, 230); //Menu Instructions
-  //    printTitleOnce = false;
-  //  }
   //print("Test");
   fill(255, 255, 240);
   textSize(100);

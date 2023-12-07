@@ -2,7 +2,7 @@ class Bullets {
 
   PVector BulletPosition = ship.ShipPosition.copy();
   PVector BulletDirection = ship.ShipDirection.copy();
-  PVector BulletVelocity = ship.ShipVelocity.copy();
+  PVector BulletVelocity = new PVector();
   Boolean Activate;
 
 
@@ -24,7 +24,12 @@ class Bullets {
   }
 
   void MoveBullet() {
-    BulletPosition.add(BulletDirection);//constantly moves asteroid based on random direction
+    for (int i = 0; i < 10; i++) {
+      BulletVelocity.add(BulletDirection);
+    }
+    BulletVelocity.add(BulletDirection);
+    BulletPosition.add(BulletVelocity);//constantly moves bullet based on random direction
+    BulletVelocity.limit(10);
   }
 
 
