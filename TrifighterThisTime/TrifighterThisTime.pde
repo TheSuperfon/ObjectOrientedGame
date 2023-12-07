@@ -80,7 +80,8 @@ void draw() {
     {
       float ShipCollisionDetector = asteroidslist[i].AsteroidPosition.dist(ship.ShipPosition);
       if (ShipCollisionDetector < asteroidslist[i].RandomAsteroidSize/2) {
-        println("youSuck");
+        GameStart = false;
+        CreditsActive = false;
       }
     }
 
