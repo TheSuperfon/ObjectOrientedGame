@@ -28,10 +28,10 @@ Ship ship;
 
 
 
-//Asteroids asteroid;
-//Asteroids variables
-ArrayList<Bullets> bulletlist = new ArrayList<Bullets>();
+
 //arraylist for bullets and arrays for asteroids
+ArrayList<Bullets> bulletlist = new ArrayList<Bullets>();
+
 Asteroids [] asteroidslist = new Asteroids[6];// array that holds 6 asteroids that appear in the game
 
 //do cases for credits and add timer
@@ -76,6 +76,14 @@ void draw() {
     ship.MakeShip();
     ship.MoveShip();
     ship.ShipStayOnMap();
+    for (int i = 0; i < asteroidslist.length; i++)
+    {
+      float ShipCollisionDetector = asteroidslist[i].AsteroidPosition.dist(ship.ShipPosition);
+      if (ShipCollisionDetector < asteroidslist[i].RandomAsteroidSize/2) {
+        println("youSuck");
+      }
+    }
+
     SpawnInAsteroids();
     //println(bulletlist.size());
     for (int i = 0; i < bulletlist.size(); i++)
@@ -89,10 +97,9 @@ void draw() {
       }
       for (int j = 0; j < asteroidslist.length; j++)
       {
-        //if ((dist(asteroidslist[i].AsteroidPosition.x, bulletlist.BulletPosition.x,) )){
-        
-        
-        }
+        //if ((dist(asteroidslist[i].AsteroidPosition.x, bulletlist.BulletPosition.x, asteroidslist[i].AsteroidPosition.y, bulletlist.BulletPosition.y) )) {
+        //
+        //}
       }
     }
 
@@ -256,7 +263,7 @@ void keyPressed() {
     } else if (key == 'd') {
       RightRotation = true;
     } else if (key == ' ') {
-      SpawnInBullets();
+      //SpawnInBullets();
     }
   }
 }

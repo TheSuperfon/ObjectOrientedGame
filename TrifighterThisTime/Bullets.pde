@@ -1,18 +1,18 @@
 class Bullets {
 
-  PVector BulletPosition = ship.ShipPosition.copy();
-  PVector BulletDirection = ship.ShipDirection.copy();
+  PVector BulletPosition;
+  PVector BulletDirection;
   PVector BulletVelocity = new PVector();
   Boolean Activate;
 
 
 
   Bullets() {
+    BulletPosition = ship.ShipPosition.copy();
+    BulletDirection = ship.ShipDirection.copy();
   }
 
   void MakeBullet() {
-    //noStroke(); //no outline
-    //fill(255, 220, 0);
     imageMode(CENTER);
     pushMatrix();
     translate(BulletPosition.x, BulletPosition.y);
