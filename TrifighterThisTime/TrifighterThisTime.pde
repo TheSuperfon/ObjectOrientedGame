@@ -21,12 +21,12 @@ boolean LeftRotation;
 boolean RightRotation;
 boolean GoBackwards;
 
-
+int remover;
 
 //object things
 Ship ship;
 
-
+int Gamestart2;
 
 
 //arraylist for bullets and arrays for asteroids
@@ -58,6 +58,7 @@ void setup() {
   ship = new Ship();
   BuildAsteroids();
   PlayerTimer = 0;
+  Gamestart2 = 1;
 }
 
 
@@ -72,13 +73,16 @@ void draw() {
   text(("Score is" ), 30, 85); //instructs on how to start the game
   text((PlayerTimer), 150, 85);
 
-  if ((GameStart == false) && (CreditsActive == false)) {
+
+  switch(Gamestart2) {
+  case 1:
     Title();
     StartButton();
     CreditButton();
     Cursor();
-  } else if (GameStart == true) {
+    break;
 
+  case 2:
     ship.MakeShip();
     ship.MoveShip();
     ship.ShipStayOnMap();
@@ -93,34 +97,63 @@ void draw() {
 
     SpawnInAsteroids();
     //println(bulletlist.size());
-    for (int i = 0; i < bulletlist.size(); i++)
+    for (int i = 0; i < bulletlist.size() - 1; i++)
     {
-      bulletlist.get(i).MakeBullet();
-      bulletlist.get(i).MoveBullet();
-      bulletlist.get(i).BulletsStayOnMap();
+
+
+      //bulletlist.get(i).MakeBullet();
+      //bulletlist.get(i).MoveBullet();
+      //bulletlist.get(i).BulletsStayOnMap();
       
+      if (i >= 0) {
+
+        bulletlist.get(i + 1).MakeBullet();
+        bulletlist.get(i + 1).MoveBullet();
+        bulletlist.get(i + 1).BulletsStayOnMap();
+      }
+
+      //i -= 1;
+
       //Bulletcollider = bulletlist.get(i);
-      
-      if ((bulletlist.size()) > 3) {
+
+      if ((bulletlist.size()) > 4) {
         //println("too many");
         bulletlist.remove((bulletlist.size()-1));
       }
       for (int j = 0; j < asteroidslist.length; j++)
       {
+        //float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
         float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
         if (BulletCollisionDetector < asteroidslist[j].RandomAsteroidSize/2) {
-          print("shot");
+          asteroidslist[j].ReCreateAsteroids();
+          //print(i);
+          //print(BulletCollisionDetector);
+          //print(j);
+          bulletlist.remove(i);
+          //remover = i;
+          //RemoveBullet();
+          //bulletlist.add(new Bullets());
         }
       }
     }
+    break;
 
-
-    //asteroid.CreateAsteroids();
-  } else if ((GameStart == false) && (CreditsActive == true)) {
+  case 3:
+    ActualCredits();
+    
   }
 }
 
 
+
+
+
+
+
+
+void RemoveBullet() {
+  bulletlist.remove(remover);
+}
 
 //creates the asteroids for the code to see what they are
 void BuildAsteroids()
@@ -138,11 +171,6 @@ void SpawnInAsteroids()
     asteroidslist[i].MoveAsteroids();
     asteroidslist[i].AsteroidsStayOnMap();
     asteroidslist[i].CreateAsteroids();
-
-    //if ((dist(asteroidslist[i].AsteroidPosition, bulletlist.BulletPosition) )){
-    //
-    //
-    //}
   }
 }
 
@@ -226,7 +254,7 @@ void keyPressed() {
 
 
 
-  if (GameStart == false) {
+  if (Gamestart2 == 1) {
     if (key == 'w') {
       startbuttonpress = true; //highlights start button
     } else if (key == 's') {
@@ -237,6 +265,7 @@ void keyPressed() {
       if (key == ' ') {
         print("Start Gameplay");
         GameStart = true;
+        Gamestart2 = 2;
         PlayerTimer = 0;
         //sets starting position
         ship.ShipPosition.x = width/2;
@@ -252,7 +281,7 @@ void keyPressed() {
     if (startbuttonpress == false) {
       if (key == ' ') {
         print("got to credits");
-        CreditsActive = true;
+        Gamestart2 = 3;
       }
     }
     if (CreditsActive == true) {
@@ -265,7 +294,7 @@ void keyPressed() {
   }
 
 
-  if (GameStart == true) {
+  if (Gamestart2 == 2) {
     if (key == 'w') {
       GoForward = true;
     } else if (key == 'a') {
@@ -277,6 +306,14 @@ void keyPressed() {
     } else if (key == ' ') {
       SpawnInBullets();
     }
+    
+    
+    
+  }
+  if (Gamestart2 == 3) {
+    if (key == 'a') {
+      Gamestart2 = 1;
+    } 
   }
 }
 // void keyreleased code makes sure that the ship stops going in that direction when that key is released

@@ -21,6 +21,18 @@ class Asteroids {
     //AsteroidSprite.resize(80,76);
   }
   
+  void ReCreateAsteroids() {
+    AsteroidPosition = new PVector(random(width),random(height)); // randomizes the starting location of the asteroid
+    AsteroidsDirection = new PVector(random(-2,2),random(-2,2)); //randomizes the direction of the asteroid
+    RandomAsteroidSize = random(66,96); //randomizes the size of the asteroid
+    imageMode(CENTER);
+    image(AsteroidSprite, AsteroidPosition.x, AsteroidPosition.y, RandomAsteroidSize,RandomAsteroidSize);
+    //AsteroidSprite.resize(66,66);
+    fill(255);
+    //rect(400,400,215,215);
+    //AsteroidSprite.resize(80,76);
+  }
+  
   void MoveAsteroids() {
     AsteroidPosition.add(AsteroidsDirection);//constantly moves asteroid based on random direction
   }

@@ -31,6 +31,14 @@ class Bullets {
     BulletPosition.add(BulletVelocity);//constantly moves bullet based on random direction
     BulletVelocity.limit(10);
   }
+  
+  
+  //void StopBullet() {
+  //  BulletPosition = ship.ShipPosition.copy();
+  //  BulletDirection = ship.ShipDirection.copy();
+  //  BulletVelocity = new PVector(); 
+  //  
+  //}
 
 
 
