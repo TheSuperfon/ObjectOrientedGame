@@ -35,20 +35,8 @@ class Asteroids {
 
   void MoveAsteroids() {
     AsteroidPosition.add(AsteroidsDirection);//sets asteroid in motion and inspired by nottrifighteranymorecode but modified to fit this coding project
-    for (int i = 0; i < bulletlist.size(); i++)
-    {
-      float BulletCollisionDetector = AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
-      if (BulletCollisionDetector <= RandomAsteroidSize/2) {
-        ReCreateAsteroids();
-        bulletlist.remove(i);
-      }
-      
-      if (i >= bulletlist.size()){
-        i = 0;
-        
-      }
-    }
   }
+
 
 
 

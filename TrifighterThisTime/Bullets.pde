@@ -4,12 +4,14 @@ class Bullets {
   PVector BulletDirection;
   PVector BulletVelocity = new PVector();
   Boolean Activate;
+  int BulletNumber;
 
 
 
   Bullets() {
     BulletPosition = ship.ShipPosition.copy();
     BulletDirection = ship.ShipDirection.copy();
+    BulletNumber = (bulletlist.size()-1);
   }
 
   void MakeBullet() {
@@ -21,6 +23,7 @@ class Bullets {
     BulletSprite.resize(25, 15);
     Activate = true;
     popMatrix();
+    //print(BulletNumber);
   }
 
   void MoveBullet() {
@@ -37,7 +40,9 @@ class Bullets {
         float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(BulletPosition);
         if (BulletCollisionDetector < asteroidslist[j].RandomAsteroidSize/2) {
           asteroidslist[j].ReCreateAsteroids();
-          
+          GlobalBulletNumber = BulletNumber;
+          PlayerTimer += 1;
+          RemoveBullets();
         }
       }
     
@@ -45,7 +50,11 @@ class Bullets {
     
     
   }
-  
+  void lessenBullet(){
+    BulletNumber -= 1;
+    
+    
+  }
   
   //void StopBullet() {
   //  BulletPosition = ship.ShipPosition.copy();

@@ -22,7 +22,7 @@ boolean RightRotation;
 boolean GoBackwards;
 
 
-
+int GlobalBulletNumber;
 
 //object things
 Ship ship;
@@ -106,10 +106,9 @@ void draw() {
     {
 
       if (i >= 0) {
-
+        bulletlist.get(i + 1).BulletsStayOnMap();
         bulletlist.get(i + 1).MakeBullet();
         bulletlist.get(i + 1).MoveBullet();
-        bulletlist.get(i + 1).BulletsStayOnMap();
       }
 
       if ((bulletlist.size()) > 4) {
@@ -127,7 +126,7 @@ void draw() {
       //}
       while (BulletTimetoreset == true) {
         if (BulletTimetoreset == true) {
-          for (int r = 0; bulletlist.size() - 1 >= 0 ; r--) {
+          for (int r = 0; bulletlist.size() - 1 >= 0; r--) {
             bulletlist.remove(i);
           }
 
@@ -145,7 +144,14 @@ void draw() {
 
 
 
-
+void RemoveBullets() {
+  //GlobalBulletNumber -= 1;
+  bulletlist.remove(GlobalBulletNumber);
+  for (int i = 0; i < bulletlist.size() - 1; i++)
+  {
+    bulletlist.get(i).lessenBullet();
+  }
+}
 
 
 
