@@ -5,7 +5,7 @@ class Bullets {
   PVector BulletVelocity = new PVector();
   int BulletNumber;
 
-
+//nottrifighteranymore may of had some inspiration on this but I didn't refer to it when making this code (like when refering to the asteroid list i didn't think of nottrifighteranymore and just wanted to make code to refer to every asteroid
 
   Bullets() {
     BulletPosition = ship.ShipPosition.copy(); //gets copy of the ships position for bullet starting point
@@ -57,6 +57,8 @@ class Bullets {
     }
   }
 
+
+//inspired by nottrifighteranymore but modified and improved in it's application
   void BulletsStayOnMap() {
     if (BulletPosition.x > width) {
       BulletPosition.x = 0;
