@@ -17,7 +17,6 @@ class Asteroids {
     image(AsteroidSprite, AsteroidPosition.x, AsteroidPosition.y, RandomAsteroidSize, RandomAsteroidSize);
     //AsteroidSprite.resize(66,66);
     fill(255);
-    //rect(400,400,215,215);
     //AsteroidSprite.resize(80,76);
   }
 
