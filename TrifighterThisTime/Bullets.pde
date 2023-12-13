@@ -18,7 +18,7 @@ class Bullets {
     translate(BulletPosition.x, BulletPosition.y);
     rotate(BulletDirection.heading()); //actually rotates the bullet by providing an angle based on the shipdirection pvector
     image(BulletSprite, 0, 0);
-    //ShipSprite.resize(80, 76);
+    BulletSprite.resize(25, 15);
     Activate = true;
     popMatrix();
   }
@@ -30,6 +30,20 @@ class Bullets {
     BulletVelocity.add(BulletDirection);
     BulletPosition.add(BulletVelocity);//constantly moves bullet based on random direction
     BulletVelocity.limit(10);
+    
+    
+    for (int j = 0; j < asteroidslist.length; j++)
+      {
+        float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(BulletPosition);
+        if (BulletCollisionDetector < asteroidslist[j].RandomAsteroidSize/2) {
+          asteroidslist[j].ReCreateAsteroids();
+          
+        }
+      }
+    
+    
+    
+    
   }
   
   

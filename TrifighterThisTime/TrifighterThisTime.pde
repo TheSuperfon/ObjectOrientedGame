@@ -15,19 +15,23 @@ PImage ShipSprite;
 PImage AsteroidSprite;
 PImage BulletSprite;
 
-//direction variables
+//direction variables inspired by trifighterthistimeforreal but modified and improved in it's application
 boolean GoForward;
 boolean LeftRotation;
 boolean RightRotation;
 boolean GoBackwards;
 
-int remover;
+
+
 
 //object things
 Ship ship;
 
+//gamestarter for cases
 int Gamestart2;
 
+//
+boolean BulletTimetoreset;
 
 //arraylist for bullets and arrays for asteroids
 ArrayList<Bullets> bulletlist = new ArrayList<Bullets>();
@@ -90,21 +94,17 @@ void draw() {
     {
       float ShipCollisionDetector = asteroidslist[i].AsteroidPosition.dist(ship.ShipPosition);
       if (ShipCollisionDetector < asteroidslist[i].RandomAsteroidSize/1.2) {
-        GameStart = false;
+        Gamestart2 = 1;
         CreditsActive = false;
+        asteroidslist[i].ReCreateAsteroids();
+        BulletTimetoreset = true;
       }
     }
 
     SpawnInAsteroids();
-    //println(bulletlist.size());
     for (int i = 0; i < bulletlist.size() - 1; i++)
     {
 
-
-      //bulletlist.get(i).MakeBullet();
-      //bulletlist.get(i).MoveBullet();
-      //bulletlist.get(i).BulletsStayOnMap();
-      
       if (i >= 0) {
 
         bulletlist.get(i + 1).MakeBullet();
@@ -112,27 +112,26 @@ void draw() {
         bulletlist.get(i + 1).BulletsStayOnMap();
       }
 
-      //i -= 1;
-
-      //Bulletcollider = bulletlist.get(i);
-
       if ((bulletlist.size()) > 4) {
         //println("too many");
         bulletlist.remove((bulletlist.size()-1));
       }
-      for (int j = 0; j < asteroidslist.length; j++)
-      {
-        //float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
-        float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
-        if (BulletCollisionDetector < asteroidslist[j].RandomAsteroidSize/2) {
-          asteroidslist[j].ReCreateAsteroids();
-          //print(i);
-          //print(BulletCollisionDetector);
-          //print(j);
-          bulletlist.remove(i);
-          //remover = i;
-          //RemoveBullet();
-          //bulletlist.add(new Bullets());
+      //for (int j = 0; j < asteroidslist.length; j++)
+      //{
+      //  float BulletCollisionDetector = asteroidslist[j].AsteroidPosition.dist(bulletlist.get(i).BulletPosition);
+      //  if (BulletCollisionDetector < asteroidslist[j].RandomAsteroidSize/2) {
+      //    print("shot");
+      //    asteroidslist[j].ReCreateAsteroids();
+      //    bulletlist.remove(i);
+      //  }
+      //}
+      while (BulletTimetoreset == true) {
+        if (BulletTimetoreset == true) {
+          for (int r = 0; bulletlist.size() - 1 >= 0 ; r--) {
+            bulletlist.remove(i);
+          }
+
+          BulletTimetoreset = false;
         }
       }
     }
@@ -140,7 +139,6 @@ void draw() {
 
   case 3:
     ActualCredits();
-    
   }
 }
 
@@ -151,9 +149,6 @@ void draw() {
 
 
 
-void RemoveBullet() {
-  bulletlist.remove(remover);
-}
 
 //creates the asteroids for the code to see what they are
 void BuildAsteroids()
@@ -205,25 +200,33 @@ void StartButton() {
 }
 
 
-
+//credits button function because i wanted an excuse for another button
 void CreditButton() {
   if (startbuttonpress == true) {
-    fill(80, 0, 255);
+    fill(80, 0, 255); //highlighted purple
   }
   if (startbuttonpress == false) {
-    fill(80, 100, 255);
+    fill(80, 100, 255); //unhighlited purple
   }
-  rect(400, 475, 200, 50); //
-  textSize(30);
-  fill(255, 255, 240);
-  text(("Credits"), 355, 485); //credits because i wanted an excuse for another button
+  rect(400, 475, 200, 50); //draws purple rectangle
+  textSize(30); //sets good text size
+  fill(255, 255, 240); //makes text white
+  text(("Credits"), 355, 485); //credits text on purple button
 }
 void ActualCredits() {
-  rect(400, 475, 200, 50); //
+  //rect(400, 475, 200, 50); //
+  textSize(50);
+  fill(255, 240, 240);
+  text(("Credits"), 325, 90); //credits ext
   textSize(30);
   fill(255, 255, 240);
-  text(("Credits"), 355, 485); //credits because i wanted an excuse for another button
+  text(("Revolutionnary genius and all around cool guy: Stefan Auburn"), 170, 290); //oh boy i'm so glad that i credited myself and everyone will be able to see my name associated with this game
+  text(("Special thanks to the following:"), 180, 390); //oh boy i'm so glad that i credited myself and everyone will be able to see my name associated with this game
+  text(("Lyle Rains"), 350, 430); //google his name
+  text(("Ed Logg"), 350, 470); //google his name
+  text(("Press A to return to menu"), 250, 670); //google his name
 }
+
 
 
 
@@ -263,7 +266,6 @@ void keyPressed() {
 
     if (startbuttonpress == true) {
       if (key == ' ') {
-        print("Start Gameplay");
         GameStart = true;
         Gamestart2 = 2;
         PlayerTimer = 0;
@@ -280,7 +282,6 @@ void keyPressed() {
     }
     if (startbuttonpress == false) {
       if (key == ' ') {
-        print("got to credits");
         Gamestart2 = 3;
       }
     }
@@ -296,24 +297,21 @@ void keyPressed() {
 
   if (Gamestart2 == 2) {
     if (key == 'w') {
-      GoForward = true;
+      GoForward = true; //sets variable so ship can move forward in direction facing inspired by other coding projects like nottrifighteranymore and color dodge but modified to fit this project
     } else if (key == 'a') {
-      LeftRotation = true;
+      LeftRotation = true; //sets variable so ship can rotate left inspired by other coding projects like nottrifighteranymore and color dodge but modified to fit this project
     } else if (key == 's') {
-      GoBackwards = true;
+      GoBackwards = true; //sets variable so ship can move back inspired by other coding projects like nottrifighteranymore and color dodge but modified to fit this project
     } else if (key == 'd') {
-      RightRotation = true;
+      RightRotation = true; //sets variable so ship can rotate right inspired by other coding projects like nottrifighteranymore and color dodge but modified to fit this project
     } else if (key == ' ') {
-      SpawnInBullets();
+      SpawnInBullets(); //activate the spawning in of bullets so they can be drawn and moved in direction of ship facing
     }
-    
-    
-    
   }
   if (Gamestart2 == 3) {
     if (key == 'a') {
       Gamestart2 = 1;
-    } 
+    }
   }
 }
 // void keyreleased code makes sure that the ship stops going in that direction when that key is released
